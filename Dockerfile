@@ -19,7 +19,13 @@ RUN	deluser --remove-home node \
         && chown byteball:byteball /byteball /home/byteball/.config \
         && ln -s /byteball /home/byteball/.config/byteball-tn
 
-RUN	su - byteball -c "git clone https://github.com/byteball/byteball.git; cd byteball; git checkout testnet; bower install;  npm install; grunt"
+RUN	su - byteball -c "git clone https://github.com/byteball/byteball.git \
+		&& cd byteball \
+		&& git checkout testnet \
+		&& bower install \
+		&& npm install \
+		&& grunt \
+		&& cp -ir node_modules/sqlite3/lib/binding/node-v*-linux-x64 node_modules/sqlite3/lib/binding/node-webkit-v$NW_VERSION-linux-x64"
 
 VOLUME	/byteball
 
