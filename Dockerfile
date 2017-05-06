@@ -17,7 +17,7 @@ RUN	apt-get update \
 		libxss1 \
 		libxtst6
 
-ENV	NW_VERSION 0.22.0
+ENV	NW_VERSION 0.19.5
 
 RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz \
 	&& tar xzf nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz -C /usr/local \
