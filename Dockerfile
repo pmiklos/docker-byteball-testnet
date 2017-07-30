@@ -24,7 +24,8 @@ RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.ta
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
 	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
 
-RUN	mkdir /byteball /home/byteball/.config \
+RUN	echo "Byteball 1.9.1test" > /etc/byteball-release \
+	&& mkdir /byteball /home/byteball/.config \
         && chown byteball:byteball /byteball /home/byteball/.config \
         && ln -s /byteball /home/byteball/.config/byteball-tn \	
 	&& su - byteball -c "git clone https://github.com/byteball/byteball.git \
