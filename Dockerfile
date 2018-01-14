@@ -1,4 +1,4 @@
-FROM	node:7.9
+FROM	node:7.4
 
 RUN	deluser --remove-home node \
 	&& groupadd --gid 1000 byteball \
@@ -24,7 +24,7 @@ RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.ta
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
 	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
 
-RUN	echo "Byteball 1.9.1test" > /etc/byteball-release \
+RUN	echo "Byteball 2.1.0test" > /etc/byteball-release \
 	&& mkdir /byteball /home/byteball/.config \
         && chown byteball:byteball /byteball /home/byteball/.config \
         && ln -s /byteball /home/byteball/.config/byteball-tn \	
