@@ -24,14 +24,16 @@ RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.ta
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
 	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
 
-RUN	echo "Byteball 2.1.0test" > /etc/byteball-release \
+ARG	VERSION=2.2.0
+
+RUN	echo "Byteball ${VERSION}test" > /etc/byteball-release \
 	&& mkdir /byteball /home/byteball/.config \
         && chown byteball:byteball /byteball /home/byteball/.config \
         && ln -s /byteball /home/byteball/.config/byteball-tn \	
 	&& su - byteball -c "git clone https://github.com/byteball/byteball.git \
 		&& cd byteball \
 		&& git checkout testnet \
-		&& bower install \
+		&& bower install -F \
 		&& npm install \
 		&& grunt \
 		&& cp -ir node_modules/sqlite3/lib/binding/node-v*-linux-x64 node_modules/sqlite3/lib/binding/node-webkit-v$NW_VERSION-linux-x64"
