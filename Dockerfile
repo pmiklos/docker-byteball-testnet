@@ -24,14 +24,14 @@ RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.ta
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
 	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
 
-ARG	VERSION=2.2.0
+ARG	VERSION=2.7.0
 
-RUN	echo "Byteball ${VERSION}test" > /etc/byteball-release \
+RUN	echo "Obyte ${VERSION}test" > /etc/obyte-release \
 	&& mkdir /byteball /home/byteball/.config \
         && chown byteball:byteball /byteball /home/byteball/.config \
         && ln -s /byteball /home/byteball/.config/byteball-tn \	
-	&& su - byteball -c "git clone https://github.com/byteball/byteball.git \
-		&& cd byteball \
+	&& su - byteball -c "git clone https://github.com/byteball/obyte-gui-wallet.git \
+		&& cd obyte-gui-wallet \
 		&& git checkout testnet \
 		&& bower install -F \
 		&& npm install \
@@ -42,6 +42,7 @@ VOLUME	/byteball
 
 USER	byteball
 WORKDIR	/home/byteball
+RUN	mkdir -p .local/share/mime/packages
 
-CMD	["nw", "byteball"]
+CMD	["nw", "obyte-gui-wallet"]
 
