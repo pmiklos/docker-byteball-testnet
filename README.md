@@ -23,4 +23,4 @@ If you want to log in and look around inside the container as root you can do th
 $ docker run -it --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -u root obyte-testnet-wallet /bin/bash
 ```
 
-The wallet is installed in the home of the `byteball` user in the `/home/byteball/obyte-gui-wallet` folder. You can easily switch to that user with `su - byteball`.
+The wallet is installed in the home of the `obyte` user in the `/home/obyte/obyte-gui-wallet` folder. You can easily switch to that user with `su - obyte`.
