@@ -24,15 +24,15 @@ RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.ta
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
 	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
 
-ARG	VERSION=2.7.0
+ARG	VERSION=2.7.2-aa
 
 RUN	echo "Obyte ${VERSION}test" > /etc/obyte-release \
 	&& mkdir /obyte /home/obyte/.config \
         && chown obyte:obyte /obyte /home/obyte/.config \
-        && ln -s /obyte /home/obyte/.config/byteball-tn \
+        && ln -s /obyte /home/obyte/.config/byteball \
 	&& su - obyte -c "git clone https://github.com/byteball/obyte-gui-wallet.git \
 		&& cd obyte-gui-wallet \
-		&& git checkout testnet \
+		&& git checkout aa \
 		&& bower install -F \
 		&& npm install \
 		&& grunt \
