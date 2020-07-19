@@ -1,7 +1,6 @@
-FROM	node:12.2
+FROM	node:5.12
 
-RUN	deluser --remove-home node \
-	&& groupadd --gid 1000 obyte \
+RUN	groupadd --gid 1000 obyte \
 	&& useradd --uid 1000 --gid obyte --shell /bin/bash --create-home obyte
 
 RUN	npm install -g bower grunt-cli
@@ -12,19 +11,21 @@ RUN	apt-get update \
 		libasound2 \
 		libgconf-2-4 \
 		libgl1-mesa-glx \
+		libgtk2.0-0 \
 		libgtk-3-0 \
 		libnss3 \
 		libxss1 \
 		libxtst6
 
-ENV	NW_VERSION 0.38.3
+ENV	NW_VERSION 0.14.7
 
 RUN	curl -SLO https://dl.nwjs.io/v$NW_VERSION/nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz \
 	&& tar xzf nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz -C /usr/local \
 	&& ln -s /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64/nw /usr/local/bin/nw \
-	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz 
+	&& rm nwjs-sdk-v$NW_VERSION-linux-x64.tar.gz \
+	&& chown -R obyte:obyte /usr/local/nwjs-sdk-v$NW_VERSION-linux-x64 
 
-ARG	VERSION=2.7.0
+ARG	VERSION=3.2.0
 
 RUN	echo "Obyte ${VERSION}test" > /etc/obyte-release \
 	&& mkdir /obyte /home/obyte/.config \
